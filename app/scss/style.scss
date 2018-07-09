@@ -1,0 +1,31 @@
+//Media queries
+$breakpoints: (
+    "phone":    400px,
+    "tablet":   768px,
+    "desktop":  1248px
+);
+@mixin mq($width, $type: min){
+    @if map_has_key($breakpoints, $width){
+        $width: map_get($breakpoints, $width);
+        @if $type == max {
+            $width: $width - 1px;
+        }
+        @media only screen and (#{$type}-width: $width){
+            @content;
+        }
+    }
+}
+
+@mixin font-spotify($size: false, $color: false, $weight: false, $lh: false){
+    font-family: Helvetica, Arial, sans-serif;
+    @if $size {font-size: $size;}
+    @if $color {color: $color;}
+    @if $weight {font-weight: $weight;}
+    @if $lh {line-height: $lh;}
+}
+
+footer {
+    height: 500px;
+    background-color: black;
+    display: inline-block;
+}
